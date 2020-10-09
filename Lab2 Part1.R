@@ -22,3 +22,28 @@ pENV<- predict(lmENVH,NEW,interval="prediction")
 pENV
 cENV<- predict(lmENVH,NEW,interval="confidence")
 cENV
+lmAIR_E<-lm(AIR_E~DALY+AIR_H+WATER_H)
+lmAIR_E
+summary(lmAIR_E)
+cAIR_E<-coef(lmAIR_E)
+cAIR_E
+pAIR_E<- predict(lmAIR_E,NEW,interval="prediction")
+pAIR_E
+cAIR_E<- predict(lmAIR_E,NEW,interval="confidence")
+cAIR_E
+lmCLIMATE<-lm(CLIMATE~DALY+AIR_H+WATER_H)
+lmCLIMATE
+summary(lmCLIMATE)
+cCLIMATE<-coef(lmCLIMATE)
+cCLIMATE
+pCLIMATE<- predict(lmCLIMATE,NEW,interval="prediction")
+pCLIMATE
+cCLIMATE<- predict(lmCLIMATE,NEW,interval="confidence")
+cCLIMATE
+EPI_data2<-EPI_data[,-c(1:5,10:13,29, 31, 39, 41, 43:44, 50:51, 54, 57, 60, 62, 67:68, 72:73, 75, 85, 88, 95, 98, 125:160)]
+EPI_data3<-na.omit(EPI_data2)
+correlations <- cor(EPI_data3)
+correlations
+cat("The single most important factor in increasing the EPI in a given region is DALY_tr", "\n")
+
+
