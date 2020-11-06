@@ -1,0 +1,28 @@
+data(Titanic)
+View(Titanic)
+require(randomForest)
+fitSur <- randomForest(Survived ~ Class + Age + Sex,   data=Titanic)
+print(fitSur) 	
+importance(fitSur)
+plot(fitSur)
+require(rpart)
+Titanic_rpart <- rpart(Survived ~ Class + Age + Sex + Freq, data = Titanic,method = "class")
+plot(Titanic_rpart)
+text(Titanic_rpart)
+require(party)
+treeTitanic<-ctree(Survived ~ ., data=Titanic)
+plot(treeTitanic)
+cforest(Survived ~ ., data=Titanic, controls=cforest_control(mtry=2, mincriterion=0))
+treeSur<-ctree(Survived ~ Sex + Class + Age + Freq, data = Titanic)
+cforest(Survived ~ Sex + Class + Age + Freq, data = Titanic, controls=cforest_control(mtry=2, mincriterion=0))
+library(tree)
+tr <- tree(Survived ~ ., data=Titanic)
+tr
+tr$Sex
+plot(tr)
+text(tr)
+out.dist=dist(Titanic,method="euclidean")
+out.hclust=hclust(out.dist,method="complete")
+plclust(out.hclust)
+
+
